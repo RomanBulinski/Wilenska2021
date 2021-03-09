@@ -2,7 +2,11 @@ package rom.buulean.wilenska2021backend.Owners.Domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
@@ -16,4 +20,8 @@ public class Owner {
     private String lastNames;
     private String phone;
     private String email;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="owner_id")
+    private List<RealEstate> realEstate;
+
 }

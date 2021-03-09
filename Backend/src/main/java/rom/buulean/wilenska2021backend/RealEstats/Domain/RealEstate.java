@@ -12,7 +12,13 @@ public class RealEstate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstNames;
-    private String lastNames;
+    private String realEstateNumber;
+    private RealEstateType realEstateType;
+    private Integer level;
+    private Integer participation;
+
+    enum RealEstateType{
+        FLAT, GARAGE
+    }
 
 }
