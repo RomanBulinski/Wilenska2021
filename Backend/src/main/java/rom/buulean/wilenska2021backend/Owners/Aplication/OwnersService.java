@@ -19,4 +19,14 @@ public class OwnersService implements OwnersUseCase {
     public List<Owner> findAll() {
         return ownerJpaRepository.findAll();
     }
+
+    @Override
+    public Owner addOwner(CreateOwnerCommand createOwnerCommand) {
+        Owner owner = new Owner(createOwnerCommand.getFirstNames(),
+                createOwnerCommand.getLastNames(),
+                createOwnerCommand.getPhone(),
+                createOwnerCommand.getEmail()
+                );
+        return ownerJpaRepository.save(owner);
+    }
 }

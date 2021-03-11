@@ -24,4 +24,10 @@ public class Owner {
     @JoinColumn(name="owner_id")
     private List<RealEstate> realEstate;
 
+    public Owner(String firstNames, String lastNames, String phone, String email) {
+        this.firstNames = firstNames;
+        this.lastNames = lastNames;
+        this.phone = phone;
+        this.email = email;
+    }
 }
