@@ -7,6 +7,7 @@ import java.util.List;
 public interface OwnersUseCase {
 
     List<Owner> findAll();
+
     Owner addOwner( CreateOwnerCommand  createOwnerCommand);
 
     @Value

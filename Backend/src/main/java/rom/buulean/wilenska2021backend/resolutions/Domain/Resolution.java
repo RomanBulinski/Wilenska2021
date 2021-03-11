@@ -2,7 +2,6 @@ package rom.buulean.wilenska2021backend.resolutions.Domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,4 +19,9 @@ public class Resolution {
     private String title;
     private String content;
 
+    public Resolution(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
+

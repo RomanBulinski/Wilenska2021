@@ -1,14 +1,16 @@
 package rom.buulean.wilenska2021backend.resolutions.Web;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase;
 import rom.buulean.wilenska2021backend.resolutions.Aplication.port.ResolutionUseCase;
+import rom.buulean.wilenska2021backend.resolutions.Aplication.port.ResolutionUseCase.CreateResolutionCommand;
 import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -23,5 +25,27 @@ public class ResolutionController {
     public List<Resolution> findAll() {
         return resolutionUseCase.findAll();
     }
+
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addResolution( @RequestBody RestResolutionCommand restResolutionCommand) {
+        resolutionUseCase.addResolution( restResolutionCommand.toResolutionCommand());
+    }
+
+
+    @Data
+    private static class RestResolutionCommand{
+
+         String title;
+         String content;
+
+         CreateResolutionCommand toResolutionCommand(){
+             return new CreateResolutionCommand(title, content);
+         }
+
+    }
+
+
 
 }

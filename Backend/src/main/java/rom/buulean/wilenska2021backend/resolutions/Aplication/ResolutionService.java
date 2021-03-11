@@ -17,4 +17,10 @@ public class ResolutionService implements ResolutionUseCase {
     public List<Resolution> findAll() {
         return resolutionJpaRepository.findAll();
     }
+
+    @Override
+    public void addResolution(CreateResolutionCommand createResolutionCommand) {
+        Resolution  resolution = new Resolution(createResolutionCommand.getTitle(), createResolutionCommand.getContent());
+        resolutionJpaRepository.save(resolution);
+    }
 }
