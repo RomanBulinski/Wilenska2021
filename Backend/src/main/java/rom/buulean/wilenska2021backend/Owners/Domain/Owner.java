@@ -22,12 +22,20 @@ public class Owner {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="owner_id")
-    private List<RealEstate> realEstate;
+    private List<RealEstate> realEstates;
 
     public Owner(String firstNames, String lastNames, String phone, String email) {
         this.firstNames = firstNames;
         this.lastNames = lastNames;
         this.phone = phone;
         this.email = email;
+    }
+
+    public Owner(String firstNames, String lastNames, String phone, String email, List<RealEstate> realEstates) {
+        this.firstNames = firstNames;
+        this.lastNames = lastNames;
+        this.phone = phone;
+        this.email = email;
+        this.realEstates = realEstates;
     }
 }

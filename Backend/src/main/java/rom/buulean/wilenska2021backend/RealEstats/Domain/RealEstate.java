@@ -17,7 +17,14 @@ public class RealEstate {
     private Integer level;
     private Integer participation;
 
-    enum RealEstateType{
+    public RealEstate(String realEstateNumber, RealEstateType realEstateType, Integer level, Integer participation) {
+        this.realEstateNumber = realEstateNumber;
+        this.realEstateType = realEstateType;
+        this.level = level;
+        this.participation = participation;
+    }
+
+    public enum RealEstateType{
         FLAT, GARAGE
     }
 

@@ -18,10 +18,13 @@ public class Resolution {
     private Long id;
     private String title;
     private String content;
+    private String year;
 
-    public Resolution(String title, String content) {
+    public Resolution(String title, String content, String year) {
         this.title = title;
         this.content = content;
+        this.year = year;
     }
+
 }
 

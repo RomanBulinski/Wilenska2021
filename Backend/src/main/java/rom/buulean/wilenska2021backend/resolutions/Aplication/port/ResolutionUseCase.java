@@ -10,11 +10,11 @@ public interface ResolutionUseCase {
 
     void addResolution( CreateResolutionCommand createResolutionCommand);
 
-
     @Value
     class CreateResolutionCommand{
         String title;
         String content;
+        String year;
     }
 
 }

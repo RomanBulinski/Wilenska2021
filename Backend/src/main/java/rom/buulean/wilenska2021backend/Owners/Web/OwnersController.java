@@ -5,10 +5,12 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase;
 import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase.CreateOwnerCommand;
 import rom.buulean.wilenska2021backend.Owners.Domain.Owner;
+import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -20,6 +22,17 @@ import java.util.List;
 public class OwnersController {
 
     private final OwnersUseCase ownersUseCase;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        if (id.equals(42L)) {
+            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "I am a teapot");
+        }
+        return ownersUseCase
+                .findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -46,9 +59,10 @@ public class OwnersController {
         String lastNames;
         String phone;
         String email;
+        List<RealEstate> realEstates;
 
         CreateOwnerCommand toCreateOwner(){
-            return new CreateOwnerCommand(firstNames,lastNames,phone,email );
+            return new CreateOwnerCommand(firstNames,lastNames,phone,email,realEstates );
         }
     }
 

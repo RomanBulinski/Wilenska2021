@@ -20,7 +20,10 @@ public class ResolutionService implements ResolutionUseCase {
 
     @Override
     public void addResolution(CreateResolutionCommand createResolutionCommand) {
-        Resolution  resolution = new Resolution(createResolutionCommand.getTitle(), createResolutionCommand.getContent());
+        Resolution  resolution = new Resolution(
+                createResolutionCommand.getTitle(),
+                createResolutionCommand.getContent(),
+                createResolutionCommand.getYear());
         resolutionJpaRepository.save(resolution);
     }
 }

@@ -19,4 +19,7 @@ public class VoteService implements VoteUseCase {
     public List<Vote> findAll() {
         return voteJpaRepository.findAll();
     }
+
+
+
 }
