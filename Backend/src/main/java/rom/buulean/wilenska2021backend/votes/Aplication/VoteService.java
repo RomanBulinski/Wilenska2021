@@ -20,6 +20,12 @@ public class VoteService implements VoteUseCase {
         return voteJpaRepository.findAll();
     }
 
+    @Override
+    public Vote addVote(VoteCommand voteCommand) {
+        Vote vote = new Vote(voteCommand.getRealEstate(), voteCommand.getResolution(), voteCommand.getVoteType());
+        System.out.println(vote);
+        return voteJpaRepository.save(vote);
+    }
 
 
 }

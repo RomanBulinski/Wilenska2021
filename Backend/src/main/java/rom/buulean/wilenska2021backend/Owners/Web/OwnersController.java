@@ -44,7 +44,7 @@ public class OwnersController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> addOwner(@Valid @RequestBody RestOwnerCommand restOwnerCommand) {
-        Owner owner = ownersUseCase.addOwner( restOwnerCommand.toCreateOwner() );
+        Owner owner = ownersUseCase.addOwner( restOwnerCommand.toCreateOwnerCommand() );
         return ResponseEntity.created(createdOwnerUri(owner)).build();
     }
 
@@ -61,7 +61,7 @@ public class OwnersController {
         String email;
         List<RealEstate> realEstates;
 
-        CreateOwnerCommand toCreateOwner(){
+        CreateOwnerCommand toCreateOwnerCommand(){
             return new CreateOwnerCommand(firstNames,lastNames,phone,email,realEstates );
         }
     }

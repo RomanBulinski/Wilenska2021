@@ -5,9 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase;
 import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase.CreateOwnerCommand;
-import rom.buulean.wilenska2021backend.RealEstats.Aplication.RealEstateService;
+import rom.buulean.wilenska2021backend.RealEstats.Aplication.port.RealEstateUseCase;
 import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
 import rom.buulean.wilenska2021backend.resolutions.Aplication.port.ResolutionUseCase;
+import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
+import rom.buulean.wilenska2021backend.votes.Aplication.port.VoteUseCase;
+import rom.buulean.wilenska2021backend.votes.Aplication.port.VoteUseCase.VoteCommand;
+import rom.buulean.wilenska2021backend.votes.Domain.Vote;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +24,17 @@ public class StarterDataInDB implements CommandLineRunner {
 
     OwnersUseCase ownersUseCase;
     ResolutionUseCase resolutionUseCase;
-    RealEstateService realEstateService;
+    RealEstateUseCase realEstateUseCase;
+    VoteUseCase voteUseCase;
 
     @Override
     public void run(String... args) {
-//        initDate();
-//        placeOrder();
         initOwners();
         initResolutions();
-//        initRealEstates();
+        initVotes();
     }
 
     private void initOwners() {
-
 
         List<CreateOwnerCommand> owners = new ArrayList<>();
 
@@ -53,10 +55,16 @@ public class StarterDataInDB implements CommandLineRunner {
         resolutionUseCase.addResolution(new CreateResolutionCommand("uchwala o zielni", "aaaaa bbbb", "2018/2"));
     }
 
-//    private void initRealEstates() {
-//        realEstateService.addRealEstate(
-//                new CreateRealEstateCommand("m1", RealEstate.RealEstateType.FLAT, 1, 5000));
-//    }
+    private void initVotes() {
+
+        System.out.println( realEstateUseCase.findAll().get(0) );
+        System.out.println( resolutionUseCase.findAll().get(0) );
+
+        voteUseCase.addVote( new VoteCommand(
+                realEstateUseCase.findAll().get(0),
+                resolutionUseCase.findAll().get(0),
+                Vote.VoteType.YES   ));
+    }
 
 
 }
