@@ -1,10 +1,10 @@
-package rom.buulean.wilenska2021backend.RealEstats.Aplication;
+package rom.buulean.wilenska2021backend.realEstats.Aplication;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import rom.buulean.wilenska2021backend.RealEstats.Aplication.port.RealEstateUseCase;
-import rom.buulean.wilenska2021backend.RealEstats.Db.RealEstateJpaRepository;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
+import rom.buulean.wilenska2021backend.realEstats.Aplication.port.RealEstateUseCase;
+import rom.buulean.wilenska2021backend.realEstats.Db.RealEstateJpaRepository;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 
 import java.util.List;
 import java.util.Optional;

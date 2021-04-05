@@ -1,8 +1,8 @@
-package rom.buulean.wilenska2021backend.Owners.Aplication.port;
+package rom.buulean.wilenska2021backend.owners.Aplication.port;
 
 import lombok.Value;
-import rom.buulean.wilenska2021backend.Owners.Domain.Owner;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
+import rom.buulean.wilenska2021backend.owners.Domain.Owner;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,7 @@ public interface OwnersUseCase {
 
     @Value
     class CreateOwnerCommand {
-        String firstNames;
-        String lastNames;
+        String name;
         String phone;
         String email;
         List<RealEstate> realEstates;

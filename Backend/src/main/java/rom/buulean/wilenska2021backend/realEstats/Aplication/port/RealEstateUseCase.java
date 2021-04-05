@@ -1,8 +1,8 @@
-package rom.buulean.wilenska2021backend.RealEstats.Aplication.port;
+package rom.buulean.wilenska2021backend.realEstats.Aplication.port;
 
 import lombok.Value;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate.RealEstateType;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate.RealEstateType;
 
 import java.util.List;
 import java.util.Optional;

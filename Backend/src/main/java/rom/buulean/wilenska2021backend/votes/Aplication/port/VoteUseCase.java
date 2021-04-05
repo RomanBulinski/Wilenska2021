@@ -1,7 +1,7 @@
 package rom.buulean.wilenska2021backend.votes.Aplication.port;
 
 import lombok.Value;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
 import rom.buulean.wilenska2021backend.votes.Domain.Vote;
 import rom.buulean.wilenska2021backend.votes.Domain.Vote.VoteType;
@@ -11,10 +11,10 @@ public interface VoteUseCase {
 
     List<Vote> findAll();
 
-    Vote addVote( VoteCommand voteCommand );
+    Vote addVote( CreateVoteCommand voteCommand );
 
     @Value
-    class VoteCommand {
+    class CreateVoteCommand {
          RealEstate realEstate;
          Resolution resolution;
          VoteType voteType;

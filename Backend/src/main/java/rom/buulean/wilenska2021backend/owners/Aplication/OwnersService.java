@@ -1,11 +1,11 @@
-package rom.buulean.wilenska2021backend.Owners.Aplication;
+package rom.buulean.wilenska2021backend.owners.Aplication;
 
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase;
-import rom.buulean.wilenska2021backend.Owners.Db.OwnerJpaRepository;
-import rom.buulean.wilenska2021backend.Owners.Domain.Owner;
+import rom.buulean.wilenska2021backend.owners.Aplication.port.OwnersUseCase;
+import rom.buulean.wilenska2021backend.owners.Db.OwnerJpaRepository;
+import rom.buulean.wilenska2021backend.owners.Domain.Owner;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +28,8 @@ public class OwnersService implements OwnersUseCase {
 
     @Override
     public Owner addOwner(CreateOwnerCommand createOwnerCommand) {
-        Owner owner = new Owner(createOwnerCommand.getFirstNames(),
-                createOwnerCommand.getLastNames(),
+        Owner owner = new Owner(
+                createOwnerCommand.getName(),
                 createOwnerCommand.getPhone(),
                 createOwnerCommand.getEmail(),
                 createOwnerCommand.getRealEstates()

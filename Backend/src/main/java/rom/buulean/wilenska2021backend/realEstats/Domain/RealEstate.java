@@ -1,4 +1,4 @@
-package rom.buulean.wilenska2021backend.RealEstats.Domain;
+package rom.buulean.wilenska2021backend.realEstats.Domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +22,12 @@ public class RealEstate {
         this.realEstateType = realEstateType;
         this.level = level;
         this.participation = participation;
+    }
+
+    public RealEstate(String realEstateNumber,Integer participation,RealEstateType realEstateType) {
+        this.realEstateNumber = realEstateNumber;
+        this.participation = participation;
+        this.realEstateType = realEstateType;
     }
 
     public enum RealEstateType{

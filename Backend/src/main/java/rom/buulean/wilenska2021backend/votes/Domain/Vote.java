@@ -2,7 +2,7 @@ package rom.buulean.wilenska2021backend.votes.Domain;
 
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
 
 import javax.persistence.*;
@@ -32,8 +32,6 @@ public class Vote {
         this.resolution = resolution;
         this.voteType = voteType;
     }
-
-
 
     public enum VoteType{
         YES, NO, ZERO

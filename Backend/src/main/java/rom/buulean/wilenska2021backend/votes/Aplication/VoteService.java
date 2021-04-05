@@ -1,14 +1,15 @@
 package rom.buulean.wilenska2021backend.votes.Aplication;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import rom.buulean.wilenska2021backend.Owners.Db.OwnerJpaRepository;
 import rom.buulean.wilenska2021backend.votes.Aplication.port.VoteUseCase;
 import rom.buulean.wilenska2021backend.votes.Db.VoteJpaRepository;
 import rom.buulean.wilenska2021backend.votes.Domain.Vote;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class VoteService implements VoteUseCase {
@@ -21,9 +22,9 @@ public class VoteService implements VoteUseCase {
     }
 
     @Override
-    public Vote addVote(VoteCommand voteCommand) {
+    public Vote addVote(CreateVoteCommand voteCommand) {
         Vote vote = new Vote(voteCommand.getRealEstate(), voteCommand.getResolution(), voteCommand.getVoteType());
-        System.out.println(vote);
+        log.info(String.valueOf(vote));
         return voteJpaRepository.save(vote);
     }
 

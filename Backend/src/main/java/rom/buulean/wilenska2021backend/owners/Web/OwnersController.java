@@ -1,4 +1,4 @@
-package rom.buulean.wilenska2021backend.Owners.Web;
+package rom.buulean.wilenska2021backend.owners.Web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase;
-import rom.buulean.wilenska2021backend.Owners.Aplication.port.OwnersUseCase.CreateOwnerCommand;
-import rom.buulean.wilenska2021backend.Owners.Domain.Owner;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
+import rom.buulean.wilenska2021backend.owners.Aplication.port.OwnersUseCase;
+import rom.buulean.wilenska2021backend.owners.Aplication.port.OwnersUseCase.CreateOwnerCommand;
+import rom.buulean.wilenska2021backend.owners.Domain.Owner;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -43,7 +43,7 @@ public class OwnersController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> addOwner(@Valid @RequestBody RestOwnerCommand restOwnerCommand) {
+    public ResponseEntity<Owner> addOwner(@Valid @RequestBody RestOwnerCommand restOwnerCommand) {
         Owner owner = ownersUseCase.addOwner( restOwnerCommand.toCreateOwnerCommand() );
         return ResponseEntity.created(createdOwnerUri(owner)).build();
     }
@@ -55,14 +55,13 @@ public class OwnersController {
 
     @Data
     private static class RestOwnerCommand {
-        String firstNames;
-        String lastNames;
+        String name;
         String phone;
         String email;
         List<RealEstate> realEstates;
 
         CreateOwnerCommand toCreateOwnerCommand(){
-            return new CreateOwnerCommand(firstNames,lastNames,phone,email,realEstates );
+            return new CreateOwnerCommand(name,phone,email,realEstates );
         }
     }
 

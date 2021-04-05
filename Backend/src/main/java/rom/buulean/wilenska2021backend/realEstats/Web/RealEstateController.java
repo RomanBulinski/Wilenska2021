@@ -1,4 +1,4 @@
-package rom.buulean.wilenska2021backend.RealEstats.Web;
+package rom.buulean.wilenska2021backend.realEstats.Web;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,11 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import rom.buulean.wilenska2021backend.Owners.Domain.Owner;
-import rom.buulean.wilenska2021backend.Owners.Web.OwnersController;
-import rom.buulean.wilenska2021backend.RealEstats.Aplication.port.RealEstateUseCase;
-import rom.buulean.wilenska2021backend.RealEstats.Aplication.port.RealEstateUseCase.CreateRealEstateCommand;
-import rom.buulean.wilenska2021backend.RealEstats.Domain.RealEstate;
+import rom.buulean.wilenska2021backend.realEstats.Aplication.port.RealEstateUseCase;
+import rom.buulean.wilenska2021backend.realEstats.Aplication.port.RealEstateUseCase.CreateRealEstateCommand;
+import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 
 import javax.validation.Valid;
 import java.net.URI;
