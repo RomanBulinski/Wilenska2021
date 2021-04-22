@@ -30,6 +30,10 @@ public class RealEstate {
         this.realEstateType = realEstateType;
     }
 
+    public RealEstate(String realEstateNumber) {
+        this.realEstateNumber = realEstateNumber;
+    }
+
     public enum RealEstateType{
         FLAT, GARAGE
     }

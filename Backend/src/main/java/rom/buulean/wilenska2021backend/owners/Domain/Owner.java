@@ -1,5 +1,6 @@
 package rom.buulean.wilenska2021backend.owners.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 
@@ -9,6 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "owners")
+@AllArgsConstructor
 public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +21,8 @@ public class Owner {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private List<RealEstate> realEstates;
+
+    public Owner(){}
 
     public Owner(String name) {
         this.name = name;

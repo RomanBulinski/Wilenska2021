@@ -1,19 +1,16 @@
-package rom.buulean.wilenska2021backend.dbInitializer;
+package rom.buulean.wilenska2021backend.dbInitializer.web;
 
+import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import rom.buulean.wilenska2021backend.dbInitializer.port.DBinitializerUseCase;
-import com.opencsv.bean.CsvBindByName;
-import rom.buulean.wilenska2021backend.owners.Aplication.port.OwnersUseCase;
+import rom.buulean.wilenska2021backend.dbInitializer.Aplication.port.DBinitializerUseCase;
 import rom.buulean.wilenska2021backend.owners.Db.OwnerJpaRepository;
 import rom.buulean.wilenska2021backend.owners.Domain.Owner;
 import rom.buulean.wilenska2021backend.realEstats.Db.RealEstateJpaRepository;
@@ -26,25 +23,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Component
 @AllArgsConstructor
-public class DBinitializer implements CommandLineRunner {
+public class DBinitializer implements DBinitializerUseCase {
 
     private final RealEstateJpaRepository realEstateJpaRepository;
     private final OwnerJpaRepository ownerJpaRepository;
 
-//    @Override
-//    @Transactional
-//    public void initialize() {
-//        initDate();
-//    }
-
     @Override
     @Transactional
-    public void run(String... args) {
+    public void initialize() {
         initDate();
     }
 
@@ -62,40 +52,41 @@ public class DBinitializer implements CommandLineRunner {
 
     private void initRealEstateAndOwners(CsvWilenska csvWilenska) {
 
-        RealEstate  realEstate = new RealEstate(
+        RealEstate realEstate = new RealEstate(
                 csvWilenska.realEstate.split(" ")[1],
-                Integer.parseInt( csvWilenska.participation ),
+                Integer.parseInt(csvWilenska.participation),
                 setRealEstateType(csvWilenska)
         );
         realEstateJpaRepository.save(realEstate);
 
-        Owner owner = getOrCreateOwner( csvWilenska.ownerName  );
+        Owner owner = getOrCreateOwner(csvWilenska.ownerName);
         List<RealEstate> existingRealEstates = owner.getRealEstates();
 
-        if( !Objects.isNull(existingRealEstates) ){
+        if (!Objects.isNull(existingRealEstates)) {
             existingRealEstates.add(realEstate);
-            owner.setRealEstates( existingRealEstates );
-        }else{
+            owner.setRealEstates(existingRealEstates);
+        } else {
             List<RealEstate> newRealEstates = new ArrayList<>();
             newRealEstates.add(realEstate);
-            owner.setRealEstates( newRealEstates );
+            owner.setRealEstates(newRealEstates);
         }
     }
 
-    private  RealEstateType setRealEstateType(CsvWilenska csvWilenska){
+    private RealEstateType setRealEstateType(CsvWilenska csvWilenska) {
         String item = csvWilenska.realEstate.split(" ")[1].split("/")[1];
-        if( item.startsWith("G") || item.startsWith("M") ){
+        if (item.startsWith("G") || item.startsWith("M")) {
             return RealEstateType.GARAGE;
-        }else {
+        } else {
             return RealEstateType.FLAT;
         }
     }
 
-    private Owner getOrCreateOwner(String name){
+    private Owner getOrCreateOwner(String name) {
         return ownerJpaRepository.findByNameIgnoreCase(name).orElseGet(
-                ()->ownerJpaRepository.save(new Owner( name ))
+                () -> ownerJpaRepository.save(new Owner(name))
         );
     }
+
 
     @Data
     @AllArgsConstructor
