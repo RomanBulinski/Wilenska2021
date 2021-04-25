@@ -87,7 +87,6 @@ public class DBinitializer implements DBinitializerUseCase {
         );
     }
 
-
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
