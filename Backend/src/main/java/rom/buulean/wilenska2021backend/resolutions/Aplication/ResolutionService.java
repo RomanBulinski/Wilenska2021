@@ -6,6 +6,7 @@ import rom.buulean.wilenska2021backend.resolutions.Aplication.port.ResolutionUse
 import rom.buulean.wilenska2021backend.resolutions.Db.ResolutionJpaRepository;
 import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -16,6 +17,10 @@ public class ResolutionService implements ResolutionUseCase {
     @Override
     public List<Resolution> findAll() {
         return resolutionJpaRepository.findAll();
+    }
+
+    public Optional<Resolution> findByTitle(String title) {
+        return resolutionJpaRepository.findByTitle(title);
     }
 
     @Override

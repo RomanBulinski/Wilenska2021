@@ -82,7 +82,7 @@ public class DBinitializer implements DBinitializerUseCase {
     }
 
     private Owner getOrCreateOwner(String name) {
-        return ownerJpaRepository.findByNameIgnoreCase(name).orElseGet(
+        return ownerJpaRepository.findByName(name).orElseGet(
                 () -> ownerJpaRepository.save(new Owner(name))
         );
     }

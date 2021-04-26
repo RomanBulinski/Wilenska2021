@@ -28,7 +28,7 @@ public class OwnersService implements OwnersUseCase {
 
     @Override
     public Optional<Owner> findByName(String name) {
-        return ownerJpaRepository.findByNameIgnoreCase(name);
+        return ownerJpaRepository.findByName(name);
     }
 
     @Override

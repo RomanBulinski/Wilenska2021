@@ -15,6 +15,7 @@ import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -30,6 +31,14 @@ public class OwnersController {
         }
         return ownersUseCase
                 .findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{name}/name")
+    public ResponseEntity<?> findByName(@PathVariable String name) {
+        return ownersUseCase
+                .findByName(name)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

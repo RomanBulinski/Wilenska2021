@@ -3,6 +3,7 @@ package rom.buulean.wilenska2021backend.resolutions.Web;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import rom.buulean.wilenska2021backend.resolutions.Aplication.port.ResolutionUseCase;
@@ -23,6 +24,16 @@ public class ResolutionController {
     public List<Resolution> findAll() {
         return resolutionUseCase.findAll();
     }
+
+
+    @GetMapping("/{title}/title")
+    public ResponseEntity<?> findByName(@PathVariable String title) {
+        return resolutionUseCase
+                .findByTitle(title)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
 
     @PostMapping

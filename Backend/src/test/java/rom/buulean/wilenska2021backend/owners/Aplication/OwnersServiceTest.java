@@ -12,6 +12,7 @@ import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,12 +44,23 @@ class OwnersServiceTest {
         ownerJpaRepository.save( new Owner("Jan Kowalski"));
         List<RealEstate> realEstates = new ArrayList<>();
         realEstates.add(new RealEstate("m4"));
+        List<Owner> allOwnersBeforeAdd = ownersService.findAll();
+        assertEquals( 1, allOwnersBeforeAdd.size());
         // when
         ownersService.addOwner( new OwnersUseCase.CreateOwnerCommand("Waldek Nowak","111-111-111-111","x@com.pl", realEstates));
         // then
-        List<Owner> allOwners = ownersService.findAll();
-        assertEquals( 2, allOwners.size());
+        List<Owner> allOwnersAfterAdd = ownersService.findAll();
+        assertEquals( 2, allOwnersAfterAdd.size());
     }
 
+    @Test
+    public void findByName(){
+        // given
+        ownerJpaRepository.save( new Owner("Jan Kowalski"));
+        // when
+        Optional<Owner> owner = ownersService.findByName( "Jan");
+        // then
+        assertTrue( owner.isPresent() );
+    }
 
 }
