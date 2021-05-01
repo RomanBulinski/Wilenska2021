@@ -34,14 +34,11 @@ public class ResolutionController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void addResolution(@RequestBody RestResolutionCommand restResolutionCommand) {
         resolutionUseCase.addResolution(restResolutionCommand.toResolutionCommand());
     }
-
 
     @Data
     private static class RestResolutionCommand {
@@ -53,8 +50,5 @@ public class ResolutionController {
         CreateResolutionCommand toResolutionCommand() {
             return new CreateResolutionCommand(title, content, year);
         }
-
     }
-
-
 }

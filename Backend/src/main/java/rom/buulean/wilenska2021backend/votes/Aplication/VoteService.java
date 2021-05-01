@@ -12,7 +12,7 @@ import java.util.List;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class VoteService implements VoteUseCase {
+public class    VoteService implements VoteUseCase {
 
     private final VoteJpaRepository voteJpaRepository;
 
@@ -27,6 +27,4 @@ public class VoteService implements VoteUseCase {
         log.info(String.valueOf(vote));
         return voteJpaRepository.save(vote);
     }
-
-
 }

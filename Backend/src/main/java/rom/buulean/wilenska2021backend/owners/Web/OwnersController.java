@@ -15,8 +15,8 @@ import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 @RequestMapping("/owners")
@@ -73,8 +73,4 @@ public class OwnersController {
             return new CreateOwnerCommand(name,phone,email,realEstates );
         }
     }
-
-
-
-
 }

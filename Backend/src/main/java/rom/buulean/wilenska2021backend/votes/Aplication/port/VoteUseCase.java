@@ -19,6 +19,4 @@ public interface VoteUseCase {
          Resolution resolution;
          VoteType voteType;
     }
-
-
 }
