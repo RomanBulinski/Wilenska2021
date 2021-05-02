@@ -26,9 +26,9 @@ public class ResolutionService implements ResolutionUseCase {
     @Override
     public void addResolution(CreateResolutionCommand createResolutionCommand) {
         Resolution  resolution = new Resolution(
+                createResolutionCommand.getSymbolNumber(),
                 createResolutionCommand.getTitle(),
-                createResolutionCommand.getContent(),
-                createResolutionCommand.getYear());
+                createResolutionCommand.getContent());
         resolutionJpaRepository.save(resolution);
     }
 }

@@ -15,9 +15,9 @@ public interface ResolutionUseCase {
 
     @Value
     class CreateResolutionCommand{
+        String symbolNumber;
         String title;
         String content;
-        String year;
     }
 
 }

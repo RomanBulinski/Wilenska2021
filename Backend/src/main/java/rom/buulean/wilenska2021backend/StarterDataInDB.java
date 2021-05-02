@@ -49,8 +49,8 @@ public class StarterDataInDB implements CommandLineRunner {
     }
 
     private void initResolutions() {
-        resolutionUseCase.addResolution(new CreateResolutionCommand("uchwala o robakach", "rerwer kwlkrew jlkewrj rrr", "2018/1"));
-        resolutionUseCase.addResolution(new CreateResolutionCommand("uchwala o zielni", "aaaaa bbbb", "2018/2"));
+        resolutionUseCase.addResolution(new CreateResolutionCommand("8/04/2021","uchwala o robakach", "rerwer kwlkrew jlkewrj rrr"));
+        resolutionUseCase.addResolution(new CreateResolutionCommand("9/04/2021","uchwala o zielni", "aaaaa bbbb"));
     }
 
     private void initVotes() {

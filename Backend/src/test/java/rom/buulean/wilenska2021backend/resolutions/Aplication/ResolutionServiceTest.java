@@ -26,7 +26,7 @@ class ResolutionServiceTest {
     @Test
     public void findByTitle() {
         // given
-        resolutionJpaRepository.save(new Resolution("O windach", "Windy tekst uchwały", "2020"));
+        resolutionJpaRepository.save(new Resolution( "8/04/2021","O windach", "Windy tekst uchwały"));
         // when
         Optional<Resolution> resolution = resolutionService.findByTitle("wind");
         // then

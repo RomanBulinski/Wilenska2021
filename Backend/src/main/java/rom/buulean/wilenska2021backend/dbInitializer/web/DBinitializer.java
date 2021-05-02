@@ -16,6 +16,8 @@ import rom.buulean.wilenska2021backend.owners.Domain.Owner;
 import rom.buulean.wilenska2021backend.realEstats.Db.RealEstateJpaRepository;
 import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate;
 import rom.buulean.wilenska2021backend.realEstats.Domain.RealEstate.RealEstateType;
+import rom.buulean.wilenska2021backend.resolutions.Db.ResolutionJpaRepository;
+import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,11 +33,30 @@ public class DBinitializer implements DBinitializerUseCase {
 
     private final RealEstateJpaRepository realEstateJpaRepository;
     private final OwnerJpaRepository ownerJpaRepository;
+    private final ResolutionJpaRepository resolutionJpaRepository;
 
     @Override
     @Transactional
     public void initialize() {
         initDate();
+        loadResolutions();
+    }
+
+    private void loadResolutions() {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new ClassPathResource("resolutions.csv").getInputStream()))) {
+            CsvToBean<CsvResolutions> build = new CsvToBeanBuilder<CsvResolutions>(reader)
+                    .withType(CsvResolutions.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+            build.stream().forEach(this::initResolutions);
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to parse CSV file", e);
+        }
+    }
+
+    private void initResolutions(CsvResolutions csvResolutions) {
+        Resolution resolution = new Resolution( csvResolutions.symbolNumber, csvResolutions.title, csvResolutions.symbolNumber );
+        resolutionJpaRepository.save(resolution);
     }
 
     private void initDate() {
@@ -98,5 +119,19 @@ public class DBinitializer implements DBinitializerUseCase {
         @CsvBindByName
         private String participation;
     }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class CsvResolutions {
+        @CsvBindByName
+        private String symbolNumber;
+        @CsvBindByName
+        private String title;
+        @CsvBindByName
+        private String content;
+    }
+
+
 
 }

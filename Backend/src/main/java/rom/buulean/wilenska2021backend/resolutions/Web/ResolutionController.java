@@ -12,6 +12,7 @@ import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
 
 import java.util.List;
 
+@CrossOrigin
 @Controller
 @AllArgsConstructor
 @RequestMapping("/resolutions")
@@ -43,12 +44,12 @@ public class ResolutionController {
     @Data
     private static class RestResolutionCommand {
 
+        String symbolNumber;
         String title;
         String content;
-        String year;
 
         CreateResolutionCommand toResolutionCommand() {
-            return new CreateResolutionCommand(title, content, year);
+            return new CreateResolutionCommand(symbolNumber,title, content);
         }
     }
 }
