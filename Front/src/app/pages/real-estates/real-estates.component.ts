@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {tap} from 'rxjs/operators';
+import {RealEstateHttpService} from '../../ServicesHTTP/real-estate-http-service';
+import {Owner, RealEstate} from '../../ServicesHTTP/owner';
 
 @Component({
   selector: 'app-real-estates',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RealEstatesComponent implements OnInit {
 
-  constructor() { }
+  realEstates: RealEstate[];
 
-  ngOnInit(): void {
+  constructor(private realEstateHttpService: RealEstateHttpService) {
   }
 
+  ngOnInit(): void {
+
+    this.realEstateHttpService.getAllRealEstates()
+      .pipe(
+        tap((data) => this.realEstates = data)
+      )
+      .subscribe();
+  }
 }

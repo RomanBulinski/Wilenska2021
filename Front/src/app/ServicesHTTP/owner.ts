@@ -1,5 +1,3 @@
-import {RealEstatesComponent} from '../pages/real-estates/real-estates.component';
-
 export interface Owner {
   id: number;
   email: string;
@@ -16,6 +14,6 @@ export interface RealEstate {
   realEstateType: RealEstateType;
 }
 
-export enum RealEstateType{
+export enum RealEstateType {
   FLAT, GARAGE
 }

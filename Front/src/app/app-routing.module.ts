@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {StartComponent} from './pages/start/start.component';
-import {BetaComponent} from './pages/beta/beta.component';
 import {OwnersComponent} from './pages/owners/owners.component';
 import {RealEstatesComponent} from './pages/real-estates/real-estates.component';
 import {ResolutionsComponent} from './pages/resolutions/resolutions.component';
