@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,11 +16,11 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
+
 @CrossOrigin
 @RestController
 @AllArgsConstructor
 @RequestMapping("/realEstates")
-
 public class RealEstateController {
 
     private final RealEstateUseCase realEstateUseCase;
@@ -37,6 +38,7 @@ public class RealEstateController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Secured({"ROLE_ADMIN1"})
     public List<RealEstate> findAll() {
         return realEstateUseCase.findAll();
     }

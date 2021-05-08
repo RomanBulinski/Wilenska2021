@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {tap} from 'rxjs/operators';
 import {RealEstateHttpService} from '../../ServicesHTTP/real-estate-http-service';
-import {Owner, RealEstate} from '../../ServicesHTTP/owner';
+import {Models, RealEstate} from '../../ServicesHTTP/models';
 
 @Component({
   selector: 'app-real-estates',

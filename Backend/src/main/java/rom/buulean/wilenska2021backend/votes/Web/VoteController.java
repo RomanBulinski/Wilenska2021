@@ -33,7 +33,7 @@ public class VoteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> addVote(@Valid @RequestBody VoteController.RestVoteCommand restVoteCommand) {
+    public ResponseEntity<Void> addVote(@Valid @RequestBody RestVoteCommand restVoteCommand) {
         Vote vote = voteUseCase.addVote(restVoteCommand.toCreateVoteCommand());
         return ResponseEntity.created(createdVoteUri(vote)).build();
     }

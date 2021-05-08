@@ -15,4 +15,5 @@ public interface ResolutionJpaRepository extends JpaRepository<Resolution, Long>
     Optional<Resolution> findByTitle(@Param("title") String title);
 
 
+
 }

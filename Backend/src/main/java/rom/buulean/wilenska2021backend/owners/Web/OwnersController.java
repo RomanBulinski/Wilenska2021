@@ -24,6 +24,12 @@ public class OwnersController {
 
     private final OwnersUseCase ownersUseCase;
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Owner> findAll() {
+        return ownersUseCase.findAll();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         if (id.equals(42L)) {
@@ -42,13 +48,6 @@ public class OwnersController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<Owner> findAll() {
-        return ownersUseCase.findAll();
-    }
-
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

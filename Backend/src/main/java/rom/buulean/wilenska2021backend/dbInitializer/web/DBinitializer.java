@@ -38,7 +38,7 @@ public class DBinitializer implements DBinitializerUseCase {
     @Override
     @Transactional
     public void initialize() {
-        initDate();
+        loadOwnersAndRealEstates();
         loadResolutions();
     }
 
@@ -59,7 +59,7 @@ public class DBinitializer implements DBinitializerUseCase {
         resolutionJpaRepository.save(resolution);
     }
 
-    private void initDate() {
+    private void loadOwnersAndRealEstates() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new ClassPathResource("wilenska04.csv").getInputStream()))) {
             CsvToBean<CsvWilenska> build = new CsvToBeanBuilder<CsvWilenska>(reader)
                     .withType(CsvWilenska.class)

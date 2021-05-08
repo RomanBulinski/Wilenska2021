@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OwnersHttpService} from '../../ServicesHTTP/owners-http-service';
-import {Owner} from '../../ServicesHTTP/owner';
+import {Models} from '../../ServicesHTTP/models';
 import {tap} from 'rxjs/operators';
 
 @Component({
@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
 })
 export class OwnersComponent implements OnInit {
 
-  owners: Owner[];
+  owners: Models[];
 
   constructor(
     private ownersHttpService: OwnersHttpService) { }

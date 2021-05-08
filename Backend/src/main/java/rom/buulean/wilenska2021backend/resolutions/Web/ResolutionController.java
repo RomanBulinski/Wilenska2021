@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import rom.buulean.wilenska2021backend.resolutions.Aplication.port.ResolutionUseCase;
@@ -12,8 +13,9 @@ import rom.buulean.wilenska2021backend.resolutions.Domain.Resolution;
 
 import java.util.List;
 
+
 @CrossOrigin
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/resolutions")
 public class ResolutionController {
@@ -22,6 +24,7 @@ public class ResolutionController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Secured({"ROLE_USER1"})
     public List<Resolution> findAll() {
         return resolutionUseCase.findAll();
     }

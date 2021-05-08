@@ -1,4 +1,4 @@
-export interface Owner {
+export interface Models {
   id: number;
   email: string;
   phone: string;
@@ -16,4 +16,10 @@ export interface RealEstate {
 
 export enum RealEstateType {
   FLAT, GARAGE
+}
+
+export interface Resolution {
+  symbolNumber: string;
+  title: string;
+  content: string;
 }
