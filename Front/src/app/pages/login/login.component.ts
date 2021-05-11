@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
 export class LoginComponent implements OnInit {
 
-  model: any = {};
+  // model: any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -23,16 +23,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let url = 'http://localhost:8080/login';
+    const url = 'http://localhost:8080/login';
     this.http.post<Observable<boolean>>(url, {
-      userName: this.model.username,
-      password: this.model.password
+      // userName: this.model.username,
+      // password: this.model.password
+      userName: 'user1',
+      password: 'user1'
     }).subscribe(isValid => {
       if (isValid) {
-        sessionStorage.setItem('token', btoa(this.model.username + ':' + this.model.password));
-        this.router.navigate(['']);
+        // sessionStorage.setItem('token', btoa(this.model.username + ':' + this.model.password));
+        sessionStorage.setItem('token', btoa('user1' + ':' + 'user1'));
+        this.router.navigate(['realEstates']);
       } else {
-        alert("Authentication failed.")
+        alert('Authentication failed.');
       }
     });
   }

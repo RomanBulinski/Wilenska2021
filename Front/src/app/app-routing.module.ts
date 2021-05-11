@@ -6,7 +6,6 @@ import {RealEstatesComponent} from './pages/real-estates/real-estates.component'
 import {ResolutionsComponent} from './pages/resolutions/resolutions.component';
 import {LoginComponent} from './pages/login/login.component';
 
-
 const routes: Routes = [
   {path: '', component: StartComponent},
   {path: 'start', component: StartComponent},
@@ -14,6 +13,7 @@ const routes: Routes = [
   {path: 'realEstates', component: RealEstatesComponent},
   {path: 'resolutions', component: ResolutionsComponent},
   {path: 'login', component: LoginComponent},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
