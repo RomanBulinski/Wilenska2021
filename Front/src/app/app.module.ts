@@ -11,6 +11,7 @@ import { OwnersComponent } from './pages/owners/owners.component';
 import { RealEstatesComponent } from './pages/real-estates/real-estates.component';
 import { ResolutionsComponent } from './pages/resolutions/resolutions.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {HttpClientModule} from '@angular/common/http';
     BetaComponent,
     OwnersComponent,
     RealEstatesComponent,
-    ResolutionsComponent
+    ResolutionsComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,
