@@ -13,8 +13,10 @@ const routes: Routes = [
   {path: 'realEstates', component: RealEstatesComponent},
   {path: 'resolutions', component: ResolutionsComponent},
   {path: 'login', component: LoginComponent},
-  { path: '**', redirectTo: '' }
+  {path: '**', redirectTo: '' }
 ];
+
+export const routing = RouterModule.forRoot(routes);
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {UserLoggerService} from '../../Services/UserLogger/user-logger.service';
 
 @Component({
   selector: 'app-start',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartComponent implements OnInit {
 
-  constructor() { }
+  userName: string;
+
+  constructor(private http: HttpClient,
+              private userLoggerService: UserLoggerService) {
+  }
 
   ngOnInit(): void {
   }
 
+  logout(): void {
+    this.userLoggerService.logout();
+  }
 }
+

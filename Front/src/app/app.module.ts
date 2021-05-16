@@ -12,6 +12,12 @@ import {RealEstatesComponent} from './pages/real-estates/real-estates.component'
 import {ResolutionsComponent} from './pages/resolutions/resolutions.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './pages/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatOptionModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,12 @@ import {LoginComponent} from './pages/login/login.component';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

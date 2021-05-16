@@ -1,2 +1,10 @@
 <h1> Wileńka </h1>
 
+<div>
+  <h1>Hi {{userName}}!</h1>
+</div>
+
+<button mat-raised-button
+        color="primary"
+        [routerLink]="['/login']"
+        (click)="logout()">Logout</button>

@@ -13,7 +13,7 @@ public class Wilenksa2021SecurityConfiguration extends WebSecurityConfigurerAdap
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/owners/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
 //                .mvcMatchers(HttpMethod.GET,"/resolutions/**").hasRole("USER1")
 //                .mvcMatchers(HttpMethod.GET,"/realEstates/**").hasRole("ADMIN1")
                 .antMatchers("/login").permitAll()

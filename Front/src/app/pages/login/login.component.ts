@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {AppConstant} from '../../common/app-constant';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'login',
@@ -10,7 +12,8 @@ import { Observable } from 'rxjs';
 
 export class LoginComponent implements OnInit {
 
-  // model: any = {};
+  userName = new FormControl('');
+  password = new FormControl('');
 
   constructor(
     private route: ActivatedRoute,
@@ -18,24 +21,20 @@ export class LoginComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     sessionStorage.setItem('token', '');
   }
 
-  login() {
-    const url = 'http://localhost:8080/login';
-    this.http.post<Observable<boolean>>(url, {
-      // userName: this.model.username,
-      // password: this.model.password
-      userName: 'user1',
-      password: 'user1'
+  login(): void {
+    this.http.post<Observable<boolean>>(AppConstant.LOGIN_URL, {
+      userName: this.userName.value,
+      password: this.password.value,
     }).subscribe(isValid => {
       if (isValid) {
-        // sessionStorage.setItem('token', btoa(this.model.username + ':' + this.model.password));
-        sessionStorage.setItem('token', btoa('user1' + ':' + 'user1'));
-        this.router.navigate(['realEstates']);
+        sessionStorage.setItem('token', btoa(this.userName.value + ':' + this.password.value));
+        this.router.navigate(['']);
       } else {
-        alert('Authentication failed.');
+        console.log('Logger error');
       }
     });
   }

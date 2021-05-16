@@ -12,15 +12,17 @@ import java.util.Base64;
 
 @RestController
 @CrossOrigin
-public class UserController {
+public class UserLoggerController {
 
     @RequestMapping("/login")
     public boolean login(@RequestBody User user) {
-        return user.getUserName().equals("user1") && user.getPassword().equals("user1");
+        String userName = user.getUserName();
+        String password = user.getPassword();
+        return user.checkIfUserAndPasswordCorrespond(userName, password);
     }
 
-    @RequestMapping("/user")
-    public Principal user(HttpServletRequest request) {
+    @RequestMapping("/userLogger")
+    public Principal userLogger(HttpServletRequest request) {
         String authToken = request.getHeader("Authorization").substring("Basic".length()).trim();
         return () -> new String(Base64.getDecoder().decode(authToken)).split(":")[0];
     }

@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {AppConstant} from '../common/app-constant';
 
 @Injectable({
   providedIn: 'root',
@@ -8,10 +9,8 @@ import {Observable} from 'rxjs';
 export class OwnersHttpService {
   constructor(private http: HttpClient) { }
 
-  OWNERS_URL = 'http://localhost:8080/owners';
-
-  getAllOwners(): Observable<any> {
-    return this.http.get(this.OWNERS_URL);
+  getAllOwners(options: any): Observable<any> {
+    return this.http.get(AppConstant.OWNERS_URL, options);
   }
-
 }
+
