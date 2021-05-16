@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserLoggerService} from '../Services/UserLogger/user-logger.service';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  ownersLinkVisible = true;
+  realEstatesLinkVisible = true;
+  resolutionsLinkVisible = true;
 
-  ngOnInit(): void {
+  role = '';
+
+  constructor( private userLoggerService: UserLoggerService) {
   }
 
+  ngOnInit(): void {
+    this.userLoggerService.getRole().pipe( tap( ( res ) => {
+      console.log( '2222222222222' );
+      console.log( res );
+      this.role = res;
+    })).subscribe();
+  }
 }

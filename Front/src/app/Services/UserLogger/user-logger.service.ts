@@ -35,8 +35,12 @@ export class UserLoggerService {
       ).subscribe();
   }
 
-  logout(): void {
+  public logout(): void {
     sessionStorage.setItem('token', '');
+  }
+
+  public getRole(): Observable<any> {
+    return this.http.get(AppConstant.USER_ROLE_URL);
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

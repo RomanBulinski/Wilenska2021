@@ -14,9 +14,10 @@ public class Wilenksa2021SecurityConfiguration extends WebSecurityConfigurerAdap
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-//                .mvcMatchers(HttpMethod.GET,"/resolutions/**").hasRole("USER1")
-//                .mvcMatchers(HttpMethod.GET,"/realEstates/**").hasRole("ADMIN1")
-                .antMatchers("/login").permitAll()
+                .mvcMatchers(HttpMethod.GET,"/resolutions/**").hasAnyRole("USER1","ADMIN1")
+                .mvcMatchers(HttpMethod.GET,"/realEstates/**").hasRole("ADMIN1")
+                .mvcMatchers(HttpMethod.GET,"/owners/**").hasRole("ADMIN1")
+                .antMatchers("/login", "/start", "/userLogger", "/userRole").permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .httpBasic()
@@ -36,4 +37,3 @@ public class Wilenksa2021SecurityConfiguration extends WebSecurityConfigurerAdap
                 .roles("ADMIN1");
     }
 }
-

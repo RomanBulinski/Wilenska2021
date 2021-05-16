@@ -21,13 +21,13 @@
             <a routerLink="/start"> START </a>
           </li>
           <li >
-            <a routerLink="/owners"> Właściciele </a>
+            <a *ngIf="ownersLinkVisible" routerLink="/owners"> Właściciele </a>
           </li>
           <li >
-            <a routerLink="/realEstates"> Lokale </a>
+            <a *ngIf="realEstatesLinkVisible" routerLink="/realEstates"> Lokale </a>
           </li>
           <li >
-            <a routerLink="/resolutions"> Uchwały </a>
+            <a *ngIf="resolutionsLinkVisible" routerLink="/resolutions"> Uchwały </a>
           </li>
           <li >
             <a routerLink="/login"> Login </a>

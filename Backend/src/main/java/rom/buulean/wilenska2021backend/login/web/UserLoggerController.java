@@ -1,5 +1,7 @@
 package rom.buulean.wilenska2021backend.login.web;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +27,13 @@ public class UserLoggerController {
     public Principal userLogger(HttpServletRequest request) {
         String authToken = request.getHeader("Authorization").substring("Basic".length()).trim();
         return () -> new String(Base64.getDecoder().decode(authToken)).split(":")[0];
+    }
+
+    @RequestMapping("/userRole")
+    public String getUserRole(HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            return "ADMIN1";
+        }
+        return "";
     }
 }

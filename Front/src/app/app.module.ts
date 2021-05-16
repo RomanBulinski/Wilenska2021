@@ -6,7 +6,6 @@ import {RouterModule} from '@angular/router';
 import {NavComponent} from './nav/nav.component';
 import {StartComponent} from './pages/start/start.component';
 import {AppRoutingModule} from './app-routing.module';
-import {BetaComponent} from './pages/beta/beta.component';
 import {OwnersComponent} from './pages/owners/owners.component';
 import {RealEstatesComponent} from './pages/real-estates/real-estates.component';
 import {ResolutionsComponent} from './pages/resolutions/resolutions.component';
@@ -24,7 +23,6 @@ import {MatButtonModule} from '@angular/material/button';
     AppComponent,
     NavComponent,
     StartComponent,
-    BetaComponent,
     OwnersComponent,
     RealEstatesComponent,
     ResolutionsComponent,
