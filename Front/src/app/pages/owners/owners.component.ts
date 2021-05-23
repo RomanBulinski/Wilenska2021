@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OwnersHttpService} from '../../ServicesHTTP/owners-http-service';
 import {Models} from '../../ServicesHTTP/models';
-import {tap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
 import {UserLoggerService} from '../../Services/UserLogger/user-logger.service';
 
 @Component({
@@ -19,14 +19,10 @@ export class OwnersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    const options = this.userLoggerService.options;
-
-    this.ownersHttpService.getAllOwners(options)
-      .pipe(
+    this.userLoggerService.setHeaderWithTokenFromSessionStorage().pipe(
+      switchMap(options => this.ownersHttpService.getAllOwners(options).pipe(
         tap((data) => this.owners = data)
-      )
-      .subscribe();
+      ))
+    ).subscribe();
   }
 }
-

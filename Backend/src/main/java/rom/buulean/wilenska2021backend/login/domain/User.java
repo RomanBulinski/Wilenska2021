@@ -1,35 +1,25 @@
 package rom.buulean.wilenska2021backend.login.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+@Data
 public class User {
-
-    Map<String, String> usersData;
-
-    public User() {
-        usersData = new HashMap<>();
-        usersData.put("admin1", "admin1");
-        usersData.put("user1", "user1");
-    }
 
     private String userName;
     private String password;
+    private RealEstateType role;
 
-    public String getUserName() {
-        return userName;
-    }
+    private Map<String, List<String>> usersData;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public User() {
+        usersData = new HashMap<>();
+        usersData.put("admin1", List.of("admin1","admin1",RealEstateType.ADMIN.name() ));
+        usersData.put("user1", List.of("user1","user1",RealEstateType.USER.name() ));
     }
 
     public boolean checkIfUserExist(String name) {
@@ -40,7 +30,12 @@ public class User {
         if(!checkIfUserExist(name)){
             return false;
         }
-        return usersData.get(name).equalsIgnoreCase(password);
+        return usersData.get(name).get(1).equalsIgnoreCase(password);
+    }
+
+    public enum RealEstateType{
+        ADMIN, USER
     }
 }
+
 

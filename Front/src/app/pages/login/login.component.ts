@@ -30,11 +30,13 @@ export class LoginComponent implements OnInit {
       userName: this.userName.value,
       password: this.password.value,
     }).subscribe(isValid => {
+      console.log('000000000000');
+      console.log(isValid);
       if (isValid) {
         sessionStorage.setItem('token', btoa(this.userName.value + ':' + this.password.value));
         this.router.navigate(['']);
       } else {
-        console.log('Logger error');
+        console.log('000000000000-Logger error');
       }
     });
   }

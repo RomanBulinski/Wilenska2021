@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {tap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
 import {RealEstateHttpService} from '../../ServicesHTTP/real-estate-http-service';
-import {Models, RealEstate} from '../../ServicesHTTP/models';
+import {RealEstate} from '../../ServicesHTTP/models';
 import {UserLoggerService} from '../../Services/UserLogger/user-logger.service';
 
 @Component({
@@ -18,13 +18,11 @@ export class RealEstatesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    const options = this.userLoggerService.options;
-
-    this.realEstateHttpService.getAllRealEstates(options)
-      .pipe(
+    this.userLoggerService.setHeaderWithTokenFromSessionStorage().pipe(
+      switchMap(options => this.realEstateHttpService.getAllRealEstates(options).pipe(
         tap((data) => this.realEstates = data)
-      )
-      .subscribe();
+      ))
+    ).subscribe();
   }
 }
+
